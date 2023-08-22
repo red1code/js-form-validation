@@ -1,6 +1,4 @@
-/*
- * inputs
- */
+/* inputs */
 
 const form = document.querySelector('form');
 
@@ -53,8 +51,11 @@ inputsGroup.map((input) => {
 });
 
 form.addEventListener('submit', (evt) => {
-	evt.preventDefault();
-	console.warn('SUCCESS!');
+	if (!form.checkValidity()) {
+		return;
+	}
+	form.reset();
+	alert('Form is valid and submitted successfully. You are awesome 🙏');
 });
 
 /*
@@ -63,11 +64,11 @@ form.addEventListener('submit', (evt) => {
 
 function emailValidation() {
 	if (!email.checkValidity()) {
-		email.classList.add('invalid-input');
+		email.classList.add('invalid');
 		emailValidationMsg.textContent = email.validationMessage;
 		emailValidationMsg.classList.add('show-err-msg');
 	} else {
-		email.classList.remove('invalid-input');
+		email.classList.remove('invalid');
 		emailValidationMsg.textContent = '';
 		emailValidationMsg.classList.remove('show-err-msg');
 	}
@@ -75,11 +76,11 @@ function emailValidation() {
 
 function countryValidation() {
 	if (!country.checkValidity()) {
-		country.classList.add('invalid-input');
+		country.classList.add('invalid');
 		countryValidationMsg.textContent = country.validationMessage;
 		countryValidationMsg.classList.add('show-err-msg');
 	} else {
-		country.classList.remove('invalid-input');
+		country.classList.remove('invalid');
 		countryValidationMsg.textContent = '';
 		countryValidationMsg.classList.remove('show-err-msg');
 	}
@@ -87,11 +88,11 @@ function countryValidation() {
 
 function zipCodeValidation() {
 	if (!zipCode.checkValidity()) {
-		zipCode.classList.add('invalid-input');
+		zipCode.classList.add('invalid');
 		zipCodeValidationMsg.textContent = zipCode.validationMessage;
 		zipCodeValidationMsg.classList.add('show-err-msg');
 	} else {
-		zipCode.classList.remove('invalid-input');
+		zipCode.classList.remove('invalid');
 		zipCodeValidationMsg.textContent = '';
 		zipCodeValidationMsg.classList.remove('show-err-msg');
 	}
@@ -99,11 +100,11 @@ function zipCodeValidation() {
 
 function passwordValidation() {
 	if (!password.checkValidity()) {
-		password.classList.add('invalid-input');
+		password.classList.add('invalid');
 		passwordValidationMsg.textContent = password.validationMessage;
 		passwordValidationMsg.classList.add('show-err-msg');
 	} else {
-		password.classList.remove('invalid-input');
+		password.classList.remove('invalid');
 		passwordValidationMsg.textContent = '';
 		passwordValidationMsg.classList.remove('show-err-msg');
 	}
@@ -111,13 +112,13 @@ function passwordValidation() {
 
 function passwordConfirmValidation() {
 	if (passwordConfirm.value !== password.value) {
-		passwordConfirmValidationMsg.textContent = 'Confirm password does not match the password!';
+		passwordConfirmValidationMsg.textContent = '"Confirm Password" does not match "Password"';
 		passwordConfirmValidationMsg.classList.add('show-err-msg');
-		passwordConfirm.classList.add('invalid-input');
+		passwordConfirm.classList.add('invalid');
 	} else {
 		passwordConfirmValidationMsg.textContent = '';
 		passwordConfirmValidationMsg.classList.remove('show-err-msg');
-		passwordConfirm.classList.remove('invalid-input');
+		passwordConfirm.classList.remove('invalid');
 	}
 }
 
